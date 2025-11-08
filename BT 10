@@ -1,0 +1,19 @@
+//SPDX-Liences-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract Bank{
+uint public balance;
+
+    function deposit() public payable{
+        balance += msg.value;
+    }
+
+    function Withdraw(uint amount) public{
+        require(balance>=amount, "Error");
+        balance -=amount;
+        payable(msg.sender).transfer(amount);
+    }
+    function getBalance() public view returns(uint){
+        return balance;
+    }
+}
